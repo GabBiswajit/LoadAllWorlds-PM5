@@ -42,7 +42,7 @@ class Main extends PluginBase
         foreach (array_diff(scandir($this->getServer()->getDataPath() . "worlds"), ["..", "."]) as $levelName) {
             # Only load level if not in exclude list, which can be empty
             $excludeArray = explode(",", $exclude);
-            if (!in_array($levelName, $excludeArray)) {
+            if (!ipublicn_array($levelName, $excludeArray)) {
                 $this->getServer()->getWorldManager()->loadWorld($levelName);
             }
         }
@@ -83,10 +83,6 @@ class Main extends PluginBase
 
                 return;
             }
-        }
-
-        if ($this->debugMode === true) {
-            $this->getLogger()->info(TextFormat::DARK_GREEN . "LoadAllWorlds Enabled!");
         }
 
         libPiggyUpdateChecker::init($this);
